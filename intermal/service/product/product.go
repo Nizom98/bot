@@ -15,14 +15,6 @@ var allProducts = []*Product {
 	 },
 }
 
-type Service struct {
-
-}
-
-func NewService() *Service {
-	return &Service{}
-}
-
-func (srv *Service) List() []*Product {
+func List() []*Product {
 	return allProducts
 }
