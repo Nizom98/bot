@@ -16,7 +16,15 @@ func New(send Sender, products []*product.Product) *List {
 }
 
 func (cmd *List) Exec(msg *tgbotapi.Message) error {
-	return cmd.send.Send(msg.Chat.ID,productsToString(cmd.products))
+	tgMsg := tgbotapi.NewMessage(msg.Chat.ID, productsToString(cmd.products))
+	keyboard  := tgbotapi.NewInlineKeyboardMarkup(
+		tgbotapi.NewInlineKeyboardRow(
+			tgbotapi.NewInlineKeyboardButtonData("next page", "next_page_clicked"),
+		),
+	)
+	tgMsg.ReplyMarkup = &keyboard
+	
+	return cmd.send.SendTgMsg(tgMsg)
 }
 
 func productsToString(products []*product.Product) string {

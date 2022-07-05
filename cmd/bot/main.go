@@ -31,8 +31,11 @@ func main() {
 	cmd := commands.New(bot)
 
 	for update := range updates {
-		cmd.HandleUpdate(update.Message)
+		err := cmd.HandleUpdate(update)
+		if err != nil {
+			log.Println("handle update: ", err)
+		}
 	}
 }
 
-// time 02:25:43
+// time 03:00:43

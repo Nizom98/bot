@@ -7,12 +7,14 @@ import (
 const (
 	cmdHelp = "help"
 	cmdList = "list"
+	cmdGet = "get"
 )
 
 type CmdRouter struct {
 	bot *tgbotapi.BotAPI
 	cmdHelp Cmder
 	cmdList Cmder
+	cmdGet Cmder
 }
 
 type Cmder interface {

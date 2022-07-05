@@ -22,3 +22,12 @@ func (s *Send) Send(chatID int64, msg string) error {
 
 	return nil
 }
+
+func (s *Send) SendTgMsg(msg tgbotapi.MessageConfig) error {	
+	_, err := s.bot.Send(msg)
+	if err != nil {
+		return fmt.Errorf("cannot send message: %w", err)
+	}
+
+	return nil
+}
